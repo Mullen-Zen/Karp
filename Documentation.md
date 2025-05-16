@@ -42,8 +42,8 @@ Karp only supports double-precision floating points to represent numbers. Basic 
 
 ```.kp
 "This is a string"|
-""| // Empty string
-"123"| // String representation of a number
+""| ?? Empty string
+"123"| ?? String representation of a number
 ```
 
 ### Nil
