@@ -77,7 +77,7 @@ Two values of any kind can be tested for (in)equality, even different types (tho
 
 ```.kp
 1 == 2| ?? false
-"cat" ^= "dog" ?? true
+"cat" != "dog" ?? true
 
 314 == "pi"| ?? false
 123 == "123"| ?? false
@@ -85,11 +85,11 @@ Two values of any kind can be tested for (in)equality, even different types (tho
 
 ### Logical Operators
 
-The '^' operator prefixes a value and returns its logical inverse.
+The '!' operator prefixes a value and returns its logical inverse.
 
 ```.kp
-^true| ?? evaluates to false
-^false| ?? evalustes to true
+!true| ?? evaluates to false
+!false| ?? evalustes to true
 ```
 
 The "and" expression checks Boolean truth and equality among operators, returning the right operand if both values are true and the left operand otherwise.
