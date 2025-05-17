@@ -1,0 +1,34 @@
+A Context-Free Grammar of Karp
+Starting with a small subset, and I'll add more as the language gets more and more fleshed out.
+I just learned all these vocab words sorry if I misuse them.
+
+Metasyntax:
+Each production is a name, followed by an arrow, followed by a sequence of symbols, and ended with a semicolon.
+Terminals are represented with quoted strings, and nonterminals are represented with lowercase words.
+A pipe denotes a choice of one production among multiple options.
+Parenthesis denote grouping, and can be combined with pipes to allow a choice of options whilst in another production.
+The postfix * is used to allow the previous symbol or group to be repeated zero or more times.
+The postfix + is used to allow the previous symbol or group to be repeated one.
+The postfix ? is used to allow for optional production, either zero or one times.
+Terminals that are a single lexeme whose representation may vary are capitalized.
+
+Expressions:
+- literals: numbers, booleans, strings, and nil
+- unary expressions: prefix ! for logical not, and - to negate a number
+- binary expressions: infix arithmetic and logical operators
+- parenthesis
+
+becomes
+
+Syntax:
+
+expression  -> literal
+            | unary
+            | binary
+            | grouping ;
+literal     -> NUMBER | STRING | "true" | "false" | "nil" ;
+grouping    -> "(" expression ")" ;
+unary       -> ( "!" | "-" ) expression ;
+binary      -> expression operator expression ;
+operator    -> "==" | "!=" | "<" | "<=" | ">" | ">="
+            | "+" | "-" | "*" | "/" ;
