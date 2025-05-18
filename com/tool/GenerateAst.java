@@ -48,7 +48,7 @@ public class GenerateAst {
     }
 
     private static void defineVisitor(PrintWriter writer, String baseName, List<String> types) {
-        writer.println(" interface Visitor<R> {");
+        writer.println("  interface Visitor<R> {");
 
         for (String type : types) {
             String typeName = type.split(":")[0].trim();
