@@ -32,7 +32,7 @@ operator    -> "==" | "!=" | "<" | "<=" | ">" | ">="
             | "+" | "-" | "*" | "/" ;
 
 Then, Concerning Precedence and Association (ordered from lowest to highest precedence level, where each rule matches at its level or higher):
-Interpreter V1 Rules:
+Interpreter Rules:
 program        -> statement* EOF ;
 statement      -> exprStmt | sayStmt ;
 exprStmt       -> expression "|" ;
