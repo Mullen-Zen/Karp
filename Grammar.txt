@@ -18,7 +18,6 @@ Expressions:
 - binary expressions: infix arithmetic and logical operators
 - parenthesis
 
-becomes
 
 Syntax:
 expression  -> literal
@@ -33,6 +32,11 @@ operator    -> "==" | "!=" | "<" | "<=" | ">" | ">="
             | "+" | "-" | "*" | "/" ;
 
 Then, Concerning Precedence and Association (ordered from lowest to highest precedence level, where each rule matches at its level or higher):
+Interpreter V1 Rules:
+program        -> statement* EOF ;
+statement      -> exprStmt | sayStmt ;
+exprStmt       -> expression "|" ;
+sayStmt        -> "say" expression "|" ;
 expression     -> equality
 equality       -> comparison ( ( "!=" | "==" ) comparison )* ;
 comparison     -> term ( ( ">" | ">=" | "<" | "<=" ) term )* ;

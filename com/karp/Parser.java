@@ -1,5 +1,6 @@
 package com.karp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.karp.TokenType.*;
@@ -14,15 +15,34 @@ class Parser {
         this.tokens = tokens;
     }
 
-    Expr parse() {
-        try {
-            return expression();
-        } catch (ParseError err) {
-            return null;
+    List<Stmt> parse() {
+        List<Stmt> statements = new ArrayList<>();
+        while (!isAtEnd()) {
+            statements.add(statement());
         }
+
+        return statements;
     }
 
     // each grammar rule becomes a method
+    private Stmt statement() {
+        if (match(SAY)) return sayStatement();
+
+        return expressionStatement();
+    }
+
+    private Stmt sayStatement() {
+        Expr value = expression();
+        consume(PIPE, "Expect '|' after value.");
+        return new Stmt.Say(value);
+    }
+
+    private Stmt expressionStatement() {
+        Expr expr = expression();
+        consume(PIPE, "Expect '|' after expression.");
+        return new Stmt.Expression(expr);
+    }
+
     private Expr expression() {
         return equality();
     }
