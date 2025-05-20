@@ -22,7 +22,8 @@ public class GenerateAst {
         ));
 
         defineAst(outputDir, "Stmt", Arrays.asList(
-       "Expression : Expr expression",
+       "Block      : List<Stmt> statements",
+            "Expression : Expr expression",
             "Say        : Expr expression",
             "Var        : Token name, Expr initializer"
         ));
