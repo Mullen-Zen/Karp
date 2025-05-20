@@ -19,7 +19,7 @@ Expressions:
 - parenthesis
 
 
-Syntax:
+Expression Syntax:
 expression  -> literal
             | unary
             | binary

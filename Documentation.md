@@ -1,12 +1,14 @@
 # KARP (.kp)
 
-## A fun little high-level programming language by Garrison Mullen following the work of Robert Nystrom's *Crafting Interpreters*
+## A fun little high-level programming language following the work of Robert Nystrom's *Crafting Interpreters*
 
 You should definitely give this guy some kudos if you ever get the chance; he rocks. Most of the work here comes straight from his [book](https://craftinginterpreters.com/).
 
+Interestingly, the sections' order follows that in which I added (am adding) their features to the interpreter.
+
 ## Section 0 | Introduction
 
-Welcome to Karplang, or Karp for short. Karp is a very simple (more nihilistic than minimalistic, as Nystrom says) high-level, dynamically-typed language with automatic memory management in the C language family.
+Welcome to Karplang, or Karp for short. Karp is a very simple high-level, dynamically-typed language with automatic memory management in the C language family.
 
 A Karp snippet is found below:
 
@@ -345,3 +347,5 @@ class Brunch < Breakfast {
 
 The standard library of Karp is where its "nihilism" begins to show itself.
 As of now, the standard library only includes a built-in clock() function that returns the number of seconds since the program started.
+
+Special thanks to the one and only [Clownvis](https://clownvistotherescue.com/) (yes, as in Clown Elvis) for providing amazing background entertainment to work to with this project. Please go find this man online if you want to brighten your day a little and add some whimsy to your life.
