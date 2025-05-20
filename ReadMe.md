@@ -6,4 +6,4 @@ This repository is currently under construction. Over the next few commits, I'll
 
 Feel free to skim [this file](./Documentation.md) for an overview of the language and its properties.
 
-Special thanks to the one and only [Clownvis](https://clownvistotherescue.com/) (yes, as in Clown Elvis) for providing amazing background entertainment to work to with this project. Please go find this man online if you want to brighten your day a little and add some whimsy.
+Special thanks to the one and only [Clownvis](https://clownvistotherescue.com/) (yes, as in Clown Elvis) for providing amazing background entertainment to work to with this project. Please go find this man online if you want to brighten your day a little and add some whimsy to your life.
