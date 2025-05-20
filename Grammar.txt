@@ -36,7 +36,8 @@ Interpreter Rules:
 program        -> declaration* EOF ;
 declaration    -> varDecl | statement ;
 varDecl        -> "var" IDENTIFIER ( "=" expression )? "|" ;
-statement      -> exprStmt | sayStmt | block ;
+statement      -> exprStmt | sayStmt | block | ifStmt ;
+ifStmt         -> "if" "(" expression ")" statement ( "else" statement )? ;
 exprStmt       -> expression "|" ;
 sayStmt        -> "say" expression "|" ;
 block          -> "{" declaration* "}" ;
