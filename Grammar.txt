@@ -33,7 +33,10 @@ operator    -> "==" | "!=" | "<" | "<=" | ">" | ">="
 
 Interpreter Rules:
 program        -> declaration* EOF ;
-declaration    -> varDecl | statement ;
+declaration    -> funcDecl | varDecl | statement ;
+funcDecl       -> "func" function ;
+function       -> IDENTIFIER "(" parameters? ")" block ;
+parameters     -> IDENTIFIER ( "," IDENTIFIER )* ;
 varDecl        -> "var" IDENTIFIER ( "=" expression )? "|" ;
 statement      -> exprStmt | forStmt | ifStmt | sayStmt | whileStmt | block ;
 whileStmt      -> "while" "(" expression ")" statement ;
@@ -42,6 +45,7 @@ exprStmt       -> expression "|" ;
 forStmt        -> "for" "(" ( varDecl | exprStmt | ";" ) expression? ";" expression? ")" statement ;
 sayStmt        -> "say" expression "|" ;
 block          -> "{" declaration* "}" ;
+arguments      -> expression ( "," expression )* ;
 expression     -> assignment ;
 assignment     -> IDENTIFIER "=" assignment | logic_or ;
 logic_or       -> logic_and ( "or" logic_and )* ;
@@ -50,5 +54,6 @@ equality       -> comparison ( ( "!=" | "==" ) comparison )* ;
 comparison     -> term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
 term           -> factor ( ( "-" | "+" ) factor )* ;
 factor         -> unary ( ( "/" | "*" ) unary )* ;
-unary          -> ( "!" | "-" ) unary | primary ;
+unary          -> ( "!" | "-" ) unary | call ;
+call           -> primary ( "(" arguments? ")" )* ;
 primary        -> IDENTIFIER | NUMBER | STRING | "true" | "false" | "nil" | "(" expression ")" ;
