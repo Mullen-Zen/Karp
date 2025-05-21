@@ -31,18 +31,21 @@ binary      -> expression operator expression ;
 operator    -> "==" | "!=" | "<" | "<=" | ">" | ">="
             | "+" | "-" | "*" | "/" ;
 
-Then, Concerning Precedence and Association (ordered from lowest to highest precedence level sorta, where each rule matches at its level or higher):
 Interpreter Rules:
 program        -> declaration* EOF ;
 declaration    -> varDecl | statement ;
 varDecl        -> "var" IDENTIFIER ( "=" expression )? "|" ;
-statement      -> exprStmt | sayStmt | block | ifStmt ;
+statement      -> exprStmt | forStmt | ifStmt | sayStmt | whileStmt | block ;
+whileStmt      -> "while" "(" expression ")" statement ;
 ifStmt         -> "if" "(" expression ")" statement ( "else" statement )? ;
 exprStmt       -> expression "|" ;
+forStmt        -> "for" "(" ( varDecl | exprStmt | ";" ) expression? ";" expression? ")" statement ;
 sayStmt        -> "say" expression "|" ;
 block          -> "{" declaration* "}" ;
 expression     -> assignment ;
-assignment     -> IDENTIFIER "=" assignment | equality ;
+assignment     -> IDENTIFIER "=" assignment | logic_or ;
+logic_or       -> logic_and ( "or" logic_and )* ;
+logic_and      -> equality ( "and" equality )* ;
 equality       -> comparison ( ( "!=" | "==" ) comparison )* ;
 comparison     -> term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
 term           -> factor ( ( "-" | "+" ) factor )* ;

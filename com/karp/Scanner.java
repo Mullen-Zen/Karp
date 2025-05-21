@@ -15,6 +15,7 @@ class Scanner {
         keywords.put("class", CLASS);
         keywords.put("else", ELSE);
         keywords.put("false", FALSE);
+        keywords.put("for", FOR);
         keywords.put("func", FUNC);
         keywords.put("if", IF);
         keywords.put("nil", NIL);
