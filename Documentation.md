@@ -237,7 +237,7 @@ func outerFunc() {
 }
 ```
 
-Functions in Karp are also closures, meaning code like the below will work even though the scoping is weird.
+Functions in Karp are also closures, meaning code like the below will work.
 
 ```.kp
 func returnFunc() {
@@ -253,6 +253,9 @@ func returnFunc() {
 var func = returnFunc()|
 func()|
 ```
+
+Important note on scope: an explicit declaration of scope rules in Karp is as follows:
+A variable usage refers to the preceding declaration with the same name in the innermost scope that encloses the expression where the variable is used.
 
 ## Section VII | Classes
 
