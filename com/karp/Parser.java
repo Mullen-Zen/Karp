@@ -28,6 +28,7 @@ class Parser {
     // each grammar rule becomes a method
     private Stmt declaration() {
         try {
+            if (match(FUNC)) return function("function");
             if (match(VAR)) return varDeclaration();
 
             return statement();
@@ -62,6 +63,7 @@ class Parser {
         if (match(FOR)) return forStatement();
         if (match(IF)) return ifStatement();
         if (match(SAY)) return sayStatement();
+        if (match(REPLY)) return replyStatement();
         if (match((WHILE))) return whileStatement();
         if (match(LEFT_BRACE)) return new Stmt.Block(block());
 
@@ -128,10 +130,42 @@ class Parser {
         return new Stmt.Say(value);
     }
 
+    private Stmt replyStatement() {
+        Token keyword = previous();
+        Expr value = null;
+        if (!check(PIPE)) {
+            value = expression();
+        }
+
+        consume(PIPE, "Expect '|' after reply value.");
+        return new Stmt.Reply(keyword, value);
+    }
+
     private Stmt expressionStatement() {
         Expr expr = expression();
         consume(PIPE, "Expect '|' after expression.");
         return new Stmt.Expression(expr);
+    }
+
+    private Stmt.Function function(String kind) {
+        Token name = consume(IDENTIFIER, "Expect " + kind + " name.");
+        consume(LEFT_PAREN, "Expect '(' after " + kind + " name.");
+        List<Token> parameters = new ArrayList<>();
+        if (!check(RIGHT_PAREN)) {
+            do {
+                if (parameters.size() >= 255) {
+                    error(peek(), "Can't have more than 255 parameters.");
+                }
+
+                parameters.add(
+                    consume(IDENTIFIER, "Expect parameter name."));
+            } while (match(COMMA));
+        }
+        consume(RIGHT_PAREN, "Expect ')' after parameters.");
+
+        consume(LEFT_BRACE, "Expect '{' before " + kind + " body.");
+        List<Stmt> body = block();
+        return new Stmt.Function(name, parameters, body);
     }
 
     private List<Stmt> block() {
@@ -253,7 +287,7 @@ class Parser {
         List<Expr> arguments = new ArrayList<>();
         if (!check(RIGHT_PAREN)) {
             do {
-                if (arguments.size() >= 255) error(peek(), "Cannot have more than 254 arguments.");
+                if (arguments.size() >= 255) error(peek(), "Cannot have more than 255 arguments.");
                 arguments.add(expression());
             } while (match(COMMA));
         }
