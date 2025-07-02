@@ -1,10 +1,9 @@
 package com.karp;
 
+import static com.karp.TokenType.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.karp.TokenType.*;
 
 class Parser {
     private static class ParseError extends RuntimeException {}
@@ -318,6 +317,9 @@ class Parser {
         while (true) {
             if (match(LEFT_PAREN)) {
                 expr = finishCall(expr);
+            } else if (match(DOT)) {
+                Token name = consume(IDENTIFIER, "Expect property name after '.'.");
+                expr = new Expr.Get(expr, name);
             } else break;
         }
 
